@@ -8,6 +8,7 @@ export const products: Product[] = [
       "Fone Bluetooth com cancelamento de ruído e bateria de longa duração.",
     preco: 149.9,
     imagem: "https://m.media-amazon.com/images/I/41OrZd9BcjL._AC_SX679_.jpg",
+    chave: ["fone", "bluetooth", "audio", "sem fio"],
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ export const products: Product[] = [
     preco: 199.9,
     imagem:
       "https://m.media-amazon.com/images/I/71s7fVYV1kL.__AC_SX300_SY300_QL70_ML2_.jpg",
+    chave: ["relogio", "smartwatch", "fitness", "cardiaco"],
   },
   {
     id: 3,
@@ -24,6 +26,8 @@ export const products: Product[] = [
     preco: 299.99,
     imagem:
       "https://m.media-amazon.com/images/I/41ThE8NNTSL.__AC_SX300_SY300_QL70_ML2_.jpg",
+    chave: ["camera", "segurança", "wifi", "monitoramento"],
+    destaque: true,
   },
   {
     id: 4,
@@ -32,6 +36,7 @@ export const products: Product[] = [
     preco: 89.9,
     imagem:
       "https://m.media-amazon.com/images/I/61zsUS-OjyL.__AC_SX300_SY300_QL70_ML2_.jpg",
+    chave: ["mouse", "gamer", "rgb", "periferico"],
   },
   {
     id: 5,
@@ -40,6 +45,7 @@ export const products: Product[] = [
     preco: 159.9,
     imagem:
       "https://m.media-amazon.com/images/I/61O+xK4F6aL._AC_SY300_SX300_.jpg",
+    chave: ["teclado", "mecanico", "periferico", "rgb"],
   },
   {
     id: 6,
@@ -48,6 +54,7 @@ export const products: Product[] = [
     preco: 129.9,
     imagem:
       "https://m.media-amazon.com/images/I/71uji1ExbsL.__AC_SX300_SY300_QL70_ML2_.jpg",
+    chave: ["caixa", "bluetooth", "speaker", "som", "portatil"],
   },
   {
     id: 7,
@@ -56,6 +63,7 @@ export const products: Product[] = [
     preco: 59.9,
     imagem:
       "https://m.media-amazon.com/images/I/51-zHTbxsSL.__AC_SX300_SY300_QL70_ML2_.jpg",
+    chave: ["carregador", "usb-c", "turbo", "rapido"],
   },
   {
     id: 8,
@@ -64,6 +72,8 @@ export const products: Product[] = [
     preco: 3999.9,
     imagem:
       "https://m.media-amazon.com/images/I/51qYgtqNzYL.__AC_SX300_SY300_QL70_ML2_.jpg",
+    chave: ["notebook", "ultrafino", "ssd", "computador"],
+    destaque: true,
   },
   {
     id: 9,
@@ -73,6 +83,7 @@ export const products: Product[] = [
     preco: 899.0,
     imagem:
       "https://m.media-amazon.com/images/I/51AT1Pzf7gL.__AC_SX300_SY300_QL70_ML2_.jpg",
+    chave: ["cadeira", "gamer", "conforto", "ergonomia"],
   },
   {
     id: 10,
@@ -81,6 +92,8 @@ export const products: Product[] = [
     preco: 149.0,
     imagem:
       "https://m.media-amazon.com/images/I/51yQSL7jmJL.__AC_SX300_SY300_QL70_ML2_.jpg",
+    chave: ["webcam", "video", "fullhd", "streaming"],
+    destaque: true,
   },
   {
     id: 11,
@@ -90,6 +103,7 @@ export const products: Product[] = [
     preco: 74.9,
     imagem:
       "https://m.media-amazon.com/images/I/51dMq6lI+xL._AC_SX342_SY445_.jpg",
+    chave: ["luminaria", "led", "touch", "iluminacao"],
   },
   {
     id: 12,
@@ -98,5 +112,6 @@ export const products: Product[] = [
     preco: 39.9,
     imagem:
       "https://m.media-amazon.com/images/I/71P4LsuwZML.__AC_SX300_SY300_QL70_ML2_.jpg",
+    chave: ["suporte", "celular", "ajustavel", "articulado"],
   },
 ];
