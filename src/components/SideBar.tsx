@@ -1,15 +1,6 @@
-import type { Product } from "../types/homeTypes";
 import { X, Trash2 } from "lucide-react";
 import { useState } from "react";
-
-type SidebarProps = {
-  isOpen: boolean;
-  onClose: () => void;
-  cart: Product[];
-  onRemoveItem: (id: number) => void;
-  onClearCart: () => void;
-  total: number;
-};
+import type { SidebarProps } from "../types/homeTypes";
 
 const Sidebar = ({
   isOpen,
@@ -34,7 +25,6 @@ const Sidebar = ({
         isOpen ? "translate-x-0" : "translate-x-full"
       } transition-transform duration-300 z-50 flex flex-col`}
     >
-      {/* Header */}
       <div className="p-4 flex justify-between items-center border-b">
         <h2 className="text-lg font-semibold text-slate-800">Carrinho</h2>
         <button

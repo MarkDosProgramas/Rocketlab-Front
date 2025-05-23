@@ -1,10 +1,5 @@
-import { Search } from "lucide-react";
-
-type HeaderProps = {
-  onCartClick: () => void;
-  filtro: string;
-  setFiltro: (valor: string) => void;
-};
+import { Search, ShoppingCartIcon } from "lucide-react";
+import type { HeaderProps } from "../types/homeTypes";
 
 const Header = ({ onCartClick, filtro, setFiltro }: HeaderProps) => {
   return (
@@ -35,7 +30,7 @@ const Header = ({ onCartClick, filtro, setFiltro }: HeaderProps) => {
           onClick={onCartClick}
           className="bg-white text-slate-800 px-4 py-2 rounded shadow hover:bg-slate-100 transition"
         >
-          Ver Carrinho
+          <ShoppingCartIcon size={16} />
         </button>
       </div>
     </header>

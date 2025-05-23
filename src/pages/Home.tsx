@@ -4,6 +4,7 @@ import type { Product } from "../types/homeTypes";
 import Sidebar from "../components/SideBar";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import ProductCarousel from "../components/ProductCarousel";
 import { ShoppingCart } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
@@ -11,10 +12,12 @@ const Home = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [cart, setCart] = useState<Product[]>([]);
   const [filtro, setFiltro] = useState("");
+
   const navigate = useNavigate();
 
   const handleAddCart = (product: Product) => {
     setCart((prevCart) => [...prevCart, product]);
+    setIsSidebarOpen(true);
   };
 
   const handleRemoveItem = (index: number) => {
@@ -30,6 +33,7 @@ const Home = () => {
   );
 
   const produtosDestaque = products.filter((p) => p.destaque);
+
   const produtos = products;
 
   const listaParaExibir = filtro ? produtosFiltrados : null;
@@ -60,11 +64,8 @@ const Home = () => {
             R$ {produto.preco}
           </strong>
           <button
-            onClick={() => {
-              handleAddCart(produto);
-              setIsSidebarOpen(true);
-            }}
-            className="mt-4 flex items-center gap-2 text-sm text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition-colors"
+            onClick={() => handleAddCart(produto)}
+            className="mt-4 flex items-center gap-2 text-sm text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition-colors mx-auto"
           >
             <ShoppingCart size={16} />
             Adicionar ao carrinho
@@ -107,7 +108,10 @@ const Home = () => {
           <>
             <div className="w-full max-w-6xl">
               <h2 className="text-2xl font-bold mb-4">Destaques</h2>
-              {renderLista(produtosDestaque)}
+              <ProductCarousel
+                products={produtosDestaque}
+                onAddCart={handleAddCart}
+              />
             </div>
 
             <div className="w-full max-w-6xl">
