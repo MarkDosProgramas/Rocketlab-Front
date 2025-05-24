@@ -1,3 +1,4 @@
+// src/pages/Home.tsx
 import { useState } from "react";
 import { products } from "../mocks/products";
 import type { Product } from "../types/homeTypes";
@@ -33,8 +34,7 @@ const Home = () => {
   );
 
   const produtosDestaque = products.filter((p) => p.destaque);
-
-  const produtos = products;
+  const todosProdutos = products;
 
   const listaParaExibir = filtro ? produtosFiltrados : null;
 
@@ -116,7 +116,7 @@ const Home = () => {
 
             <div className="w-full max-w-6xl">
               <h2 className="text-2xl font-bold mb-4">Todos os Produtos</h2>
-              {renderLista(produtos)}
+              {renderLista(todosProdutos)}
             </div>
           </>
         )}

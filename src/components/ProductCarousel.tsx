@@ -1,3 +1,5 @@
+// src/components/ProductCarousel.tsx
+import React from "react";
 import Slider from "react-slick";
 import { ChevronLeft, ChevronRight, ShoppingCart } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -97,6 +99,7 @@ const ProductCarousel = ({ products, onAddCart }: ProductCarouselProps) => {
       </button>
     </div>
   );
+
   return (
     <Slider {...settings}>
       {products.map((produto) => renderProductCard(produto))}

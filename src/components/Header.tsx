@@ -1,12 +1,27 @@
-import { Search, ShoppingCartIcon } from "lucide-react";
+// src/components/Header.tsx
+import React from "react";
+import { Search, ShoppingCartIcon, LogIn, LogOut } from "lucide-react";
 import type { HeaderProps } from "../types/homeTypes";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 
-const Header = ({ onCartClick, filtro, setFiltro }: HeaderProps) => {
+const Header: React.FC<HeaderProps> = ({ onCartClick, filtro, setFiltro }) => {
+  const navigate = useNavigate();
+  const { user, logout } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
+
   return (
-    <header className="w-full bg-slate-800 text-white p-4 shadow-md z-10 relative">
+    <header className="w-full bg-slate-800 text-white p-4 shadow-md z-30 relative">
       <div className="flex justify-between items-center gap-4">
         <div className="flex items-center gap-4 flex-1">
-          <h1 className="text-2xl font-bold tracking-tight whitespace-nowrap">
+          <h1
+            className="text-2xl font-bold tracking-tight whitespace-nowrap cursor-pointer"
+            onClick={() => navigate("/")}
+          >
             🛒 Rocketlab Store
           </h1>
           <div className="flex items-center bg-slate-700 rounded overflow-hidden flex-1">
@@ -26,12 +41,41 @@ const Header = ({ onCartClick, filtro, setFiltro }: HeaderProps) => {
             </button>
           </div>
         </div>
-        <button
-          onClick={onCartClick}
-          className="bg-white text-slate-800 px-4 py-2 rounded shadow hover:bg-slate-100 transition"
-        >
-          <ShoppingCartIcon size={16} />
-        </button>
+
+        <nav className="flex items-center gap-4">
+          {user ? (
+            <div className="flex items-center gap-2">
+              <img
+                src={user.photoUrl}
+                alt={user.username}
+                className="w-8 h-8 rounded-full border-2 border-white object-cover"
+                title={`Bem-vindo, ${user.username}!`}
+              />
+              <button
+                onClick={handleLogout}
+                className="flex items-center gap-1 text-sm text-white hover:text-red-400 transition-colors"
+              >
+                <LogOut size={18} />
+                Sair
+              </button>
+            </div>
+          ) : (
+            <button
+              onClick={() => navigate("/login")}
+              className="flex items-center gap-1 text-sm text-white hover:text-blue-400 transition-colors"
+            >
+              <LogIn size={18} />
+              Entrar
+            </button>
+          )}
+
+          <button
+            onClick={onCartClick}
+            className="bg-white text-slate-800 px-4 py-2 rounded shadow hover:bg-slate-100 transition flex items-center justify-center gap-1"
+          >
+            <ShoppingCartIcon size={16} />
+          </button>
+        </nav>
       </div>
     </header>
   );

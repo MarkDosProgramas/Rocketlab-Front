@@ -1,9 +1,15 @@
+// src/pages/Produto.tsx
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { products } from "../mocks/products";
 import type { Product } from "../types/homeTypes";
-import { ChevronLeft, ChevronRight, ShoppingCart, Star } from "lucide-react";
-import { ArrowLeft } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  ShoppingCart,
+  Star,
+  ArrowLeft,
+} from "lucide-react";
 
 const Produto = () => {
   const navigate = useNavigate();

@@ -6,7 +6,7 @@ export const products: Product[] = [
     id: 1,
     nome: "Fone de Ouvido Sem Fio",
     descricao:
-      "Experimente o som imersivo com este fone Bluetooth de última geração. Possui cancelamento de ruído ativo para uma experiência sonora sem interrupções e bateria de longa duração, ideal para viagens e uso diário. Conforto e qualidade em um só produto.",
+      "Experimente o som imersivo com este fone Bluetooth de última geração. Possui cancelamento de ruído ativo para uma experiência sonora sem interrupções e bateria de longa duração, ideal para viagens e uso diário. Conforto e qualidade em um solo produto.",
     preco: 149.9,
     imagem: "https://m.media-amazon.com/images/I/41OrZd9BcjL._AC_SX679_.jpg",
     imagensAdicionais: [
@@ -14,7 +14,7 @@ export const products: Product[] = [
       "https://images-americanas.b2w.io/produtos/01/00/img/5472714/4/5472714421_2GG.jpg",
     ],
     chave: ["fone", "bluetooth", "audio", "sem fio", "cancelamento de ruído"],
-    destaque: true, // Marquei como destaque para aparecer no carrossel
+    destaque: true,
     especificacoes: {
       Conectividade: "Bluetooth 5.2",
       Bateria: "Até 30 horas",
@@ -188,7 +188,7 @@ export const products: Product[] = [
       "portatil",
       "resistente a água",
     ],
-    destaque: true, // Marquei como destaque
+    destaque: true,
     especificacoes: {
       Conectividade: "Bluetooth 5.0",
       Potência: "20W RMS",
@@ -284,7 +284,7 @@ export const products: Product[] = [
         user: "Laura V.",
       },
     ],
-    estoque: 5, // Baixo estoque
+    estoque: 5,
   },
   {
     id: 9,
@@ -392,7 +392,7 @@ export const products: Product[] = [
     id: 12,
     nome: "Suporte Articulado para Celular",
     descricao:
-      "O Suporte Articulado para Celular é o acessório perfeito para quem busca versatilidade. Ideal para lives, videochamadas, assistir filmes ou seguir receitas, ele é totalmente ajustável em altura e ângulo, proporcionando a melhor visualização em qualquer situação. Robusto e fácil de instalar em mesas ou bancadas.",
+      "O Suporte Articulado para Celular é o acessório perfeito para quem busca versatilidade. Ideal para lives, videochamadas, assistir filmes ou seguir receitas. Totalmente ajustável em altura e ângulo, proporcionando a melhor visualização em qualquer situação. Robusto e fácil de instalar em mesas ou bancadas.",
     preco: 39.9,
     imagem:
       "https://m.media-amazon.com/images/I/71P4LsuwZML.__AC_SX300_SY300_QL70_ML2_.jpg",
