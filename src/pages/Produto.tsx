@@ -4,8 +4,32 @@ import { products } from "../mocks/products";
 import type { Product } from "../types/homeTypes";
 import Button from "../components/Button";
 import { ChevronLeft, ChevronRight, ShoppingCart, Star } from "lucide-react";
+import { useAuth } from "../contexts/AuthContext";
 
 const Produto = () => {
+  const { currentUser } = useAuth(); // necessário se o carrinho for por usuário
+
+  const handleAddCart = (product: Product) => {
+    if (!currentUser) {
+      alert("Você precisa estar logado para adicionar itens ao carrinho.");
+      return;
+    }
+
+    const cartKey = `cart_${currentUser.id}`;
+    const cartData = localStorage.getItem(cartKey);
+    const cart = cartData ? JSON.parse(cartData) : [];
+
+    const existingIndex = cart.findIndex((item: any) => item.id === product.id);
+
+    if (existingIndex !== -1) {
+      cart[existingIndex].quantidade += 1;
+    } else {
+      cart.push({ ...product, quantidade: 1 });
+    }
+
+    localStorage.setItem(cartKey, JSON.stringify(cart));
+    alert("Produto adicionado ao carrinho com sucesso!");
+  };
   const { id } = useParams<{ id: string }>();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -129,6 +153,7 @@ const Produto = () => {
           )}
 
           <button
+            onClick={() => handleAddCart(produto)}
             className="mt-auto flex items-center justify-center gap-3 text-lg text-white bg-slate-700 hover:bg-slate-800 px-6 py-3 rounded-lg transition-colors font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={produto.estoque === 0}
           >

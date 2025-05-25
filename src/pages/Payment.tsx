@@ -62,15 +62,21 @@ const Payment = () => {
                 <>
                   <ul className="mb-4 text-sm text-slate-700">
                     {cart.map((item) => (
-                      <li key={item.id}>
-                        {item.nome} x {item.quantidade} - R${" "}
-                        {(item.preco * item.quantidade).toFixed(2)}
+                      <li
+                        key={item.id}
+                        className="flex justify-between items-center"
+                      >
+                        {/* Nome e Quantidade do lado esquerdo */}
+                        <span>
+                          {item.nome} x {item.quantidade}
+                        </span>
+                        {/* Preço total do item alinhado à direita */}
+                        <span className="font-medium">
+                          R$ {(item.preco * item.quantidade).toFixed(2)}
+                        </span>
                       </li>
                     ))}
                   </ul>
-                  <p className="text-right font-semibold text-lg mb-4">
-                    Total: R$ {total.toFixed(2)}
-                  </p>
 
                   {/* Botões de seleção de método */}
                   <div className="flex justify-center gap-4 mb-6">
@@ -154,7 +160,7 @@ const Payment = () => {
                       </p>
                       <div className="flex justify-center">
                         <img
-                          src="/qr-code-exemplo.png"
+                          src="/QRCODE.png"
                           alt="QR Code Pix"
                           className="w-40 h-40 border rounded-lg"
                         />

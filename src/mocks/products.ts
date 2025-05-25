@@ -205,7 +205,7 @@ export const products: Product[] = [
         user: "Gabriel N.",
       },
     ],
-    estoque: 18,
+    estoque: 0,
   },
   {
     id: 7,
