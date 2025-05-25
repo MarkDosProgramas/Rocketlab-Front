@@ -1,4 +1,3 @@
-// src/components/Header.tsx
 import React from "react";
 import { Search, ShoppingCartIcon, LogIn, LogOut } from "lucide-react";
 import type { HeaderProps } from "../types/homeTypes";
@@ -7,7 +6,7 @@ import { useAuth } from "../contexts/AuthContext";
 
 const Header: React.FC<HeaderProps> = ({ onCartClick, filtro, setFiltro }) => {
   const navigate = useNavigate();
-  const { user, logout } = useAuth();
+  const { currentUser, logout } = useAuth();
 
   const handleLogout = () => {
     logout();
@@ -43,13 +42,13 @@ const Header: React.FC<HeaderProps> = ({ onCartClick, filtro, setFiltro }) => {
         </div>
 
         <nav className="flex items-center gap-4">
-          {user ? (
+          {currentUser ? (
             <div className="flex items-center gap-2">
               <img
-                src={user.photoUrl}
-                alt={user.username}
+                src={currentUser.photoUrl}
+                alt={currentUser.username}
                 className="w-8 h-8 rounded-full border-2 border-white object-cover"
-                title={`Bem-vindo, ${user.username}!`}
+                title={`Bem-vindo, ${currentUser.username}!`}
               />
               <button
                 onClick={handleLogout}
@@ -62,7 +61,7 @@ const Header: React.FC<HeaderProps> = ({ onCartClick, filtro, setFiltro }) => {
           ) : (
             <button
               onClick={() => navigate("/login")}
-              className="flex items-center gap-1 text-sm text-white hover:text-blue-400 transition-colors"
+              className="flex items-center gap-1 text-sm text-white hover:text-slate-300 transition-colors"
             >
               <LogIn size={18} />
               Entrar
@@ -71,7 +70,7 @@ const Header: React.FC<HeaderProps> = ({ onCartClick, filtro, setFiltro }) => {
 
           <button
             onClick={onCartClick}
-            className="bg-white text-slate-800 px-4 py-2 rounded shadow hover:bg-slate-100 transition flex items-center justify-center gap-1"
+            className="bg-white text-slate-800 px-4 py-2 rounded shadow hover:bg-slate-300 transition flex items-center justify-center gap-1"
           >
             <ShoppingCartIcon size={16} />
           </button>

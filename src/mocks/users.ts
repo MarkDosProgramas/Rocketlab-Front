@@ -8,18 +8,12 @@ export const users: User[] = [
     password: "123",
     email: "marcus@example.com",
     photoUrl: "https://cdn-icons-png.flaticon.com/512/149/149071.png",
-    // Removidas as propriedades:
-    // cart: [],
-    // orders: [],
   },
   {
     id: "user2",
     username: "maria.silva",
-    password: "abc",
+    password: "123",
     email: "maria@example.com",
     photoUrl: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
-    // Removidas as propriedades:
-    // cart: [],
-    // orders: [],
   },
 ];

@@ -1,5 +1,4 @@
-// src/pages/Home.tsx
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { products } from "../mocks/products";
 import type { Product } from "../types/homeTypes";
 import Sidebar from "../components/SideBar";
@@ -8,24 +7,77 @@ import Footer from "../components/Footer";
 import ProductCarousel from "../components/ProductCarousel";
 import { ShoppingCart } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import type { CartItem } from "../types/cartTypes";
+import { useAuth } from "../contexts/AuthContext";
 
 const Home = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [cart, setCart] = useState<Product[]>([]);
+  const { currentUser } = useAuth();
+
+  const [cart, setCart] = useState<CartItem[]>(() => {
+    if (!currentUser) return [];
+    const stored = localStorage.getItem(`cart_${currentUser.id}`);
+    return stored ? JSON.parse(stored) : [];
+  });
+
   const [filtro, setFiltro] = useState("");
 
   const navigate = useNavigate();
 
   const handleAddCart = (product: Product) => {
-    setCart((prevCart) => [...prevCart, product]);
+    if (!currentUser) {
+      alert("Você precisa estar logado para adicionar ao carrinho.");
+      navigate("/login");
+      return;
+    }
+    setCart((prevCart) => {
+      const index = prevCart.findIndex((item) => item.id === product.id);
+      if (index !== -1) {
+        const newCart = [...prevCart];
+        newCart[index].quantidade += 1;
+        return newCart;
+      }
+      return [
+        ...prevCart,
+        {
+          id: product.id,
+          nome: product.nome,
+          imagem: product.imagem,
+          preco: product.preco,
+          quantidade: 1,
+        },
+      ];
+    });
+
     setIsSidebarOpen(true);
   };
 
-  const handleRemoveItem = (index: number) => {
-    setCart((prevCart) => prevCart.filter((_, i) => i !== index));
+  const handleRemoveItem = (id: number) => {
+    setCart((prevCart) => prevCart.filter((item) => item.id !== id));
   };
 
-  const total = cart.reduce((acc, item) => acc + item.preco, 0);
+  const incrementItem = (id: number) => {
+    setCart((prevCart) =>
+      prevCart.map((item) =>
+        item.id === id ? { ...item, quantidade: item.quantidade + 1 } : item
+      )
+    );
+  };
+
+  const decrementItem = (id: number) => {
+    setCart((prevCart) =>
+      prevCart
+        .map((item) =>
+          item.id === id ? { ...item, quantidade: item.quantidade - 1 } : item
+        )
+        .filter((item) => item.quantidade > 0)
+    );
+  };
+
+  const total = cart.reduce(
+    (acc, item) => acc + item.preco * item.quantidade,
+    0
+  );
 
   const produtosFiltrados = products.filter((produto) =>
     `${produto.nome} ${produto.descricao} ${produto.chave?.join(" ") || ""}`
@@ -37,6 +89,22 @@ const Home = () => {
   const todosProdutos = products;
 
   const listaParaExibir = filtro ? produtosFiltrados : null;
+
+  const handleCartClick = () => {
+    if (!currentUser) {
+      alert("Você precisa estar logado para acessar o carrinho.");
+      navigate("/login");
+      return;
+    }
+
+    setIsSidebarOpen(true);
+  };
+
+  useEffect(() => {
+    if (currentUser) {
+      localStorage.setItem(`cart_${currentUser.id}`, JSON.stringify(cart));
+    }
+  }, [cart, currentUser]);
 
   const renderLista = (lista: Product[]) => (
     <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-6xl">
@@ -65,7 +133,7 @@ const Home = () => {
           </strong>
           <button
             onClick={() => handleAddCart(produto)}
-            className="mt-4 flex items-center gap-2 text-sm text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition-colors mx-auto"
+            className="mt-4 flex items-center gap-2 text-sm text-white bg-slate-700 hover:bg-slate-500 px-4 py-2 rounded-lg transition-colors mx-auto"
           >
             <ShoppingCart size={16} />
             Adicionar ao carrinho
@@ -78,7 +146,7 @@ const Home = () => {
   return (
     <>
       <Header
-        onCartClick={() => setIsSidebarOpen(true)}
+        onCartClick={handleCartClick}
         filtro={filtro}
         setFiltro={setFiltro}
       />
@@ -89,6 +157,8 @@ const Home = () => {
         cart={cart}
         onRemoveItem={handleRemoveItem}
         onClearCart={() => setCart([])}
+        onIncrementItem={incrementItem}
+        onDecrementItem={decrementItem}
         total={total}
       />
 

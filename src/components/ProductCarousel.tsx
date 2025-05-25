@@ -1,5 +1,3 @@
-// src/components/ProductCarousel.tsx
-import React from "react";
 import Slider from "react-slick";
 import { ChevronLeft, ChevronRight, ShoppingCart } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -18,7 +16,7 @@ const ProductCarousel = ({ products, onAddCart }: ProductCarouselProps) => {
       >
         <ChevronLeft
           size={36}
-          className="text-gray-700 hover:text-blue-600 transition-colors"
+          className="text-gray-700 hover:text-slate-300 transition-colors"
         />
       </div>
     );
@@ -34,7 +32,7 @@ const ProductCarousel = ({ products, onAddCart }: ProductCarouselProps) => {
       >
         <ChevronRight
           size={36}
-          className="text-gray-700 hover:text-blue-600 transition-colors"
+          className="text-gray-700 hover:text-slate-300 transition-colors"
         />
       </div>
     );
@@ -92,7 +90,7 @@ const ProductCarousel = ({ products, onAddCart }: ProductCarouselProps) => {
       </strong>
       <button
         onClick={() => onAddCart(produto)}
-        className="mt-4 flex items-center gap-2 text-sm text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition-colors mx-auto"
+        className="mt-4 flex items-center gap-2 text-sm text-white bg-slate-700 hover:bg-slate-500 px-4 py-2 rounded-lg transition-colors mx-auto"
       >
         <ShoppingCart size={16} />
         Adicionar ao carrinho

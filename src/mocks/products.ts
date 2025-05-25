@@ -1,4 +1,3 @@
-// src/mocks/products.ts
 import type { Product } from "../types/homeTypes";
 
 export const products: Product[] = [
@@ -10,8 +9,8 @@ export const products: Product[] = [
     preco: 149.9,
     imagem: "https://m.media-amazon.com/images/I/41OrZd9BcjL._AC_SX679_.jpg",
     imagensAdicionais: [
-      "https://images-americanas.b2w.io/produtos/01/00/img/5472714/4/5472714421_1GG.jpg",
-      "https://images-americanas.b2w.io/produtos/01/00/img/5472714/4/5472714421_2GG.jpg",
+      "https://m.media-amazon.com/images/I/51GJdqkji9L._AC_SX679_.jpg",
+      "https://m.media-amazon.com/images/I/515HklgtXkL._AC_SX679_.jpg",
     ],
     chave: ["fone", "bluetooth", "audio", "sem fio", "cancelamento de ruído"],
     destaque: true,
@@ -40,8 +39,8 @@ export const products: Product[] = [
     imagem:
       "https://m.media-amazon.com/images/I/71s7fVYV1kL.__AC_SX300_SY300_QL70_ML2_.jpg",
     imagensAdicionais: [
-      "https://m.media-amazon.com/images/I/71FzG-l18RL._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/61K0Fk32jBL._AC_SX679_.jpg",
+      "https://m.media-amazon.com/images/I/51SsOlKtnqL._AC_SX679_.jpg",
+      "https://m.media-amazon.com/images/I/514FGjX1xyL._AC_SX679_.jpg",
     ],
     chave: ["relogio", "smartwatch", "fitness", "cardiaco", "saúde"],
     destaque: false,
@@ -74,8 +73,8 @@ export const products: Product[] = [
     imagem:
       "https://m.media-amazon.com/images/I/41ThE8NNTSL.__AC_SX300_SY300_QL70_ML2_.jpg",
     imagensAdicionais: [
-      "https://m.media-amazon.com/images/I/51wXp+0R9rL._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/61WfQ7lR9QL._AC_SX679_.jpg",
+      "https://m.media-amazon.com/images/I/41hQ4O29nKL._AC_SX679_.jpg",
+      "https://m.media-amazon.com/images/I/61VndF1k+mL._AC_SX679_.jpg",
     ],
     chave: ["camera", "segurança", "wifi", "monitoramento", "casa inteligente"],
     destaque: true,
@@ -108,8 +107,8 @@ export const products: Product[] = [
     imagem:
       "https://m.media-amazon.com/images/I/61zsUS-OjyL.__AC_SX300_SY300_QL70_ML2_.jpg",
     imagensAdicionais: [
-      "https://m.media-amazon.com/images/I/61y+T2h5bKL._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/61qS+L2y94L._AC_SX679_.jpg",
+      "https://m.media-amazon.com/images/I/71HTftApKzL._AC_SX679_.jpg",
+      "https://m.media-amazon.com/images/I/61ui0HESDTL._AC_SX679_.jpg",
     ],
     chave: ["mouse", "gamer", "rgb", "periferico", "pc"],
     destaque: false,
@@ -139,11 +138,10 @@ export const products: Product[] = [
     descricao:
       "Domine o campo de batalha com este Teclado Mecânico de alta performance. Equipado com switches azuis para uma resposta tátil e sonora satisfatória, e iluminação personalizável por tecla. Construção robusta para durar em sessões intensas.",
     preco: 159.9,
-    imagem:
-      "https://m.media-amazon.com/images/I/61O+xK4F6aL._AC_SY300_SX300_.jpg",
+    imagem: "https://m.media-amazon.com/images/I/61O+xK4F6aL._AC_SX679_.jpg",
     imagensAdicionais: [
-      "https://m.media-amazon.com/images/I/617D9t9PjBL._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/61Gz1p6LqTL._AC_SX679_.jpg",
+      "https://m.media-amazon.com/images/I/71iHyKnaiRL._AC_SX679_.jpg",
+      "https://m.media-amazon.com/images/I/71Wq6M6IQxL._AC_SX679_.jpg",
     ],
     chave: ["teclado", "mecanico", "periferico", "rgb", "gamer"],
     destaque: false,
@@ -177,8 +175,8 @@ export const products: Product[] = [
     imagem:
       "https://m.media-amazon.com/images/I/71uji1ExbsL.__AC_SX300_SY300_QL70_ML2_.jpg",
     imagensAdicionais: [
-      "https://m.media-amazon.com/images/I/71Jv7uM4-fL._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/71-bWfT7fML._AC_SX679_.jpg",
+      "https://m.media-amazon.com/images/I/71-CZc5lnsL._AC_SX679_.jpg",
+      "https://m.media-amazon.com/images/I/41q51G0mGyL._AC_SX679_.jpg",
     ],
     chave: [
       "caixa",
@@ -218,8 +216,8 @@ export const products: Product[] = [
     imagem:
       "https://m.media-amazon.com/images/I/51-zHTbxsSL.__AC_SX300_SY300_QL70_ML2_.jpg",
     imagensAdicionais: [
-      "https://m.media-amazon.com/images/I/511cW5uX9nL._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/51bYv9z-l9L._AC_SX679_.jpg",
+      "https://m.media-amazon.com/images/I/61xl26+LonL._AC_SX679_.jpg",
+      "https://m.media-amazon.com/images/I/71pZ6d7HUuL._AC_SX679_.jpg",
     ],
     chave: ["carregador", "usb-c", "turbo", "rapido", "celular"],
     destaque: false,
@@ -252,8 +250,8 @@ export const products: Product[] = [
     imagem:
       "https://m.media-amazon.com/images/I/51qYgtqNzYL.__AC_SX300_SY300_QL70_ML2_.jpg",
     imagensAdicionais: [
-      "https://m.media-amazon.com/images/I/61NlBqf85AL._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/61-m5c03MML._AC_SX679_.jpg",
+      "https://m.media-amazon.com/images/I/51lgkIfugnL._AC_SX679_.jpg",
+      "https://m.media-amazon.com/images/I/512wp+WzZ4L._AC_SX679_.jpg",
     ],
     chave: [
       "notebook",
@@ -295,8 +293,8 @@ export const products: Product[] = [
     imagem:
       "https://m.media-amazon.com/images/I/51AT1Pzf7gL.__AC_SX300_SY300_QL70_ML2_.jpg",
     imagensAdicionais: [
-      "https://m.media-amazon.com/images/I/51h1z8h-xPL._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/519Y2b90WHL._AC_SX679_.jpg",
+      "https://m.media-amazon.com/images/I/51s6hte78JL._AC_SX679_.jpg",
+      "https://m.media-amazon.com/images/I/51d-fQESm0L._AC_SX679_.jpg",
     ],
     chave: ["cadeira", "gamer", "conforto", "ergonomia", "escritorio"],
     destaque: false,
@@ -329,8 +327,8 @@ export const products: Product[] = [
     imagem:
       "https://m.media-amazon.com/images/I/51yQSL7jmJL.__AC_SX300_SY300_QL70_ML2_.jpg",
     imagensAdicionais: [
-      "https://m.media-amazon.com/images/I/61sI-u9l67L._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/61Nl-Xj1BQL._AC_SX679_.jpg",
+      "https://m.media-amazon.com/images/I/51w8Cv4Ip8L._AC_SX679_.jpg",
+      "https://m.media-amazon.com/images/I/51ydGwt8fhL._AC_SX679_.jpg",
     ],
     chave: ["webcam", "video", "fullhd", "streaming", "conferencia"],
     destaque: true,
@@ -363,8 +361,8 @@ export const products: Product[] = [
     imagem:
       "https://m.media-amazon.com/images/I/51dMq6lI+xL._AC_SX342_SY445_.jpg",
     imagensAdicionais: [
-      "https://m.media-amazon.com/images/I/61i3F2p1b7L._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/51qB0b3tW6L._AC_SX679_.jpg",
+      "https://m.media-amazon.com/images/I/71mST50HIXL._AC_SX679_.jpg",
+      "https://m.media-amazon.com/images/I/81LPkVOc1+L._AC_SX679_.jpg",
     ],
     chave: ["luminaria", "led", "touch", "iluminacao", "mesa"],
     destaque: false,
@@ -397,8 +395,8 @@ export const products: Product[] = [
     imagem:
       "https://m.media-amazon.com/images/I/71P4LsuwZML.__AC_SX300_SY300_QL70_ML2_.jpg",
     imagensAdicionais: [
-      "https://m.media-amazon.com/images/I/61B1yE68Z3L._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/71yR7Xy-BML._AC_SX679_.jpg",
+      "https://m.media-amazon.com/images/I/71bnvKS4r0L._AC_SX679_.jpg",
+      "https://m.media-amazon.com/images/I/71urMsztEcL._AC_SX679_.jpg",
     ],
     chave: ["suporte", "celular", "ajustavel", "articulado", "acessório"],
     destaque: false,

@@ -1,33 +1,20 @@
-// src/contexts/AuthContext.tsx
 import React, { createContext, useContext, useState, useEffect } from "react";
-import type { ReactNode } from "react";
 import type { User } from "../types/userTypes";
 import { users as mockUsers } from "../mocks/users";
-
-interface AuthContextType {
-  user: User | null;
-  login: (username: string, password: string) => boolean;
-  logout: () => void;
-}
+import type { AuthContextType, AuthProviderProps } from "../mocks/authTypes";
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-interface AuthProviderProps {
-  children: ReactNode;
-}
-
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
 
+  // Recupera usuário do localStorage ao iniciar
   useEffect(() => {
     const storedUser = localStorage.getItem("currentUser");
     if (storedUser) {
       try {
         const parsedUser: User = JSON.parse(storedUser);
-
-        const userWithoutPassword = { ...parsedUser };
-        delete userWithoutPassword.password;
-        setUser(userWithoutPassword);
+        setCurrentUser(parsedUser);
       } catch (e) {
         console.error("Erro ao analisar usuário do localStorage:", e);
         localStorage.removeItem("currentUser");
@@ -35,15 +22,16 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   }, []);
 
+  // Atualiza localStorage sempre que o currentUser mudar
   useEffect(() => {
-    if (user) {
-      const userToStore = { ...user };
+    if (currentUser) {
+      const userToStore = { ...currentUser };
       delete userToStore.password;
       localStorage.setItem("currentUser", JSON.stringify(userToStore));
     } else {
       localStorage.removeItem("currentUser");
     }
-  }, [user]);
+  }, [currentUser]);
 
   const login = (usernameInput: string, passwordInput: string): boolean => {
     const foundUser = mockUsers.find(
@@ -54,19 +42,20 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       const userWithoutPassword = { ...foundUser };
       delete userWithoutPassword.password;
 
-      setUser(userWithoutPassword);
+      setCurrentUser(userWithoutPassword);
       return true;
     }
+
     return false;
   };
 
   const logout = () => {
-    setUser(null);
+    setCurrentUser(null);
     localStorage.removeItem("currentUser");
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ currentUser, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

@@ -1,19 +1,11 @@
-// src/pages/Produto.tsx
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { products } from "../mocks/products";
 import type { Product } from "../types/homeTypes";
-import {
-  ChevronLeft,
-  ChevronRight,
-  ShoppingCart,
-  Star,
-  ArrowLeft,
-} from "lucide-react";
+import Button from "../components/Button";
+import { ChevronLeft, ChevronRight, ShoppingCart, Star } from "lucide-react";
 
 const Produto = () => {
-  const navigate = useNavigate();
-
   const { id } = useParams<{ id: string }>();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -56,26 +48,14 @@ const Produto = () => {
 
   return (
     <div className="min-h-screen p-6 flex flex-col items-center bg-slate-50 pt-24 relative">
-      <button
-        onClick={() => navigate(-1)}
-        className="fixed top-4 left-4 lg:top-8 lg:left-8 z-50
-                   bg-white p-3 rounded-full shadow-lg
-                   flex items-center gap-2
-                   text-gray-700 hover:bg-gray-100 hover:text-blue-600 transition-colors
-                   focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-        title="Voltar para a página anterior"
-      >
-        <ArrowLeft size={24} />
-        <span className="hidden sm:inline">Voltar</span>
-      </button>
-
+      <Button />
       <div className="max-w-6xl w-full bg-white p-8 rounded-xl shadow-lg flex flex-col lg:flex-row gap-8">
         <div className="lg:w-1/2 flex flex-col items-center">
-          <div className="relative w-full max-w-lg mb-6 bg-gray-100 rounded-lg overflow-hidden">
+          <div className="relative w-full max-w-lg mb-6 bg-white-100 rounded-lg overflow-hidden">
             <img
               src={allProductImages[currentImageIndex]}
               alt={produto.nome}
-              className="w-full h-96 object-cover"
+              className="w-full max-h-96 object-contain aspect-square"
             />
             {allProductImages.length > 1 && (
               <>
@@ -101,11 +81,11 @@ const Produto = () => {
                   key={index}
                   src={img}
                   alt={`Thumbnail ${index + 1}`}
-                  className={`w-20 h-20 object-cover rounded-md cursor-pointer border-2 ${
+                  className={`w-20 h-20 object-contain rounded-md cursor-pointer border-2 ${
                     index === currentImageIndex
-                      ? "border-blue-500"
+                      ? "border-slate-500"
                       : "border-transparent"
-                  } hover:border-blue-400 transition-colors`}
+                  } hover:border-slate-400 transition-colors`}
                   onClick={() => setCurrentImageIndex(index)}
                 />
               ))}
@@ -119,7 +99,7 @@ const Produto = () => {
           </h1>
 
           {numberOfReviews > 0 && (
-            <div className="flex items-center gap-2 mb-4 text-lg text-gray-700">
+            <div className="flex items-center gap-2 mb-4 text-lg text-slate-700">
               <Star size={20} className="text-yellow-400 fill-yellow-400" />
               <span>
                 {averageRating} ({numberOfReviews} avaliações)
@@ -131,7 +111,7 @@ const Produto = () => {
             {produto.descricao || "Descrição não disponível para este produto."}
           </p>
 
-          <strong className="text-4xl font-bold text-blue-600 mb-6">
+          <strong className="text-4xl font-bold text-slate-900 mb-6">
             R$ {produto.preco.toFixed(2)}
           </strong>
 
@@ -139,7 +119,7 @@ const Produto = () => {
             <p className="text-md mb-4">
               <span className="font-semibold">Disponibilidade: </span>
               {produto.estoque > 0 ? (
-                <span className="text-green-600">
+                <span className="text-slate-600">
                   Em estoque ({produto.estoque} unidades)
                 </span>
               ) : (
@@ -149,7 +129,7 @@ const Produto = () => {
           )}
 
           <button
-            className="mt-auto flex items-center justify-center gap-3 text-lg text-white bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg transition-colors font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+            className="mt-auto flex items-center justify-center gap-3 text-lg text-white bg-slate-700 hover:bg-slate-800 px-6 py-3 rounded-lg transition-colors font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={produto.estoque === 0}
           >
             <ShoppingCart size={24} />
@@ -194,20 +174,18 @@ const Produto = () => {
                         <Star
                           key={i}
                           size={16}
-                          className={`
-                            ${
-                              i < avaliacao.rating
-                                ? "text-yellow-400 fill-yellow-400"
-                                : "text-gray-300"
-                            }
-                          `}
+                          className={`${
+                            i < avaliacao.rating
+                              ? "text-yellow-400 fill-yellow-400"
+                              : "text-gray-300"
+                          }`}
                         />
                       ))}
-                      <span className="ml-2 text-sm font-semibold text-gray-700">
+                      <span className="ml-2 text-sm font-semibold text-slate-700">
                         {avaliacao.user}
                       </span>
                     </div>
-                    <p className="text-gray-800">{avaliacao.comment}</p>
+                    <p className="text-slate-800">{avaliacao.comment}</p>
                   </div>
                 ))}
               </div>

@@ -1,4 +1,4 @@
-export type Product = {
+export interface Product {
   id: number;
   nome: string;
   descricao: string;
@@ -10,7 +10,7 @@ export type Product = {
   especificacoes?: { [key: string]: string };
   avaliacoes?: { rating: number; comment: string; user: string }[];
   estoque: number;
-};
+}
 
 export interface ProductCarouselProps {
   products: Product[];
