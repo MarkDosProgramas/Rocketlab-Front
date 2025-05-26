@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { X } from "lucide-react";
 import type { CartItem } from "../types/cartTypes";
 import { useNavigate } from "react-router-dom";
@@ -12,6 +12,9 @@ interface SidebarProps {
   onIncrementItem: (id: number) => void;
   onDecrementItem: (id: number) => void;
   total: number;
+  onApplyCoupon: (coupon: string) => void;
+  appliedCoupon: string | null;
+  discountedTotal: number;
 }
 
 const Sidebar: React.FC<SidebarProps> = ({
@@ -23,8 +26,18 @@ const Sidebar: React.FC<SidebarProps> = ({
   onIncrementItem,
   onDecrementItem,
   total,
+  onApplyCoupon,
+  appliedCoupon,
+  discountedTotal,
 }) => {
   const navigate = useNavigate();
+  const [couponCode, setCouponCode] = useState("");
+
+  const handleApplyCoupon = () => {
+    onApplyCoupon(couponCode);
+    setCouponCode("");
+  };
+
   return (
     <>
       <div
@@ -39,7 +52,7 @@ const Sidebar: React.FC<SidebarProps> = ({
           </button>
         </div>
 
-        <div className="p-4 overflow-y-auto h-[calc(100vh-140px)]">
+        <div className="p-4 overflow-y-auto h-[calc(100vh-240px)]">
           {cart.length === 0 ? (
             <p className="text-gray-500">Seu carrinho está vazio.</p>
           ) : (
@@ -90,10 +103,47 @@ const Sidebar: React.FC<SidebarProps> = ({
         </div>
 
         <div className="absolute bottom-0 left-0 w-full p-4 border-t bg-white">
+          {/* Cupom de desconto */}
+          <div className="mb-3">
+            <div className="flex gap-2">
+              <input
+                type="text"
+                value={couponCode}
+                onChange={(e) => setCouponCode(e.target.value)}
+                placeholder="Código do cupom"
+                className="flex-1 px-3 py-1 border rounded"
+              />
+              <button
+                onClick={handleApplyCoupon}
+                className="bg-slate-700 text-white px-3 py-1 rounded hover:bg-slate-600"
+              >
+                Aplicar
+              </button>
+            </div>
+            {appliedCoupon && (
+              <p className="text-green-600 text-sm mt-1">
+                Cupom {appliedCoupon} aplicado!
+              </p>
+            )}
+          </div>
+
           <div className="flex justify-between font-bold text-lg mb-2">
-            <span>Total:</span>
+            <span>Subtotal:</span>
             <span>R$ {total.toFixed(2)}</span>
           </div>
+
+          {appliedCoupon && (
+            <div className="flex justify-between text-green-600 text-sm mb-2">
+              <span>Desconto (10%):</span>
+              <span>- R$ {(total - discountedTotal).toFixed(2)}</span>
+            </div>
+          )}
+
+          <div className="flex justify-between font-bold text-lg mb-2">
+            <span>Total:</span>
+            <span>R$ {discountedTotal.toFixed(2)}</span>
+          </div>
+
           <button
             onClick={onClearCart}
             className="w-full bg-red-500 hover:bg-red-600 text-white py-2 rounded mb-2 transition-colors"

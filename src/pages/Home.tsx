@@ -10,9 +10,13 @@ import { useNavigate } from "react-router-dom";
 import type { CartItem } from "../types/cartTypes";
 import { useAuth } from "../contexts/AuthContext";
 
+const VALID_COUPON = "ROCKETLABVDEV";
+const DISCOUNT_PERCENTAGE = 0.1; // 10% discount
+
 const Home = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const { currentUser } = useAuth();
+  const [appliedCoupon, setAppliedCoupon] = useState<string | null>(null);
 
   const [cart, setCart] = useState<CartItem[]>(() => {
     if (!currentUser) return [];
@@ -74,10 +78,27 @@ const Home = () => {
     );
   };
 
-  const total = cart.reduce(
+  const handleApplyCoupon = (coupon: string) => {
+    if (coupon === VALID_COUPON) {
+      setAppliedCoupon(coupon);
+      if (currentUser) {
+        localStorage.setItem(`coupon_${currentUser.id}`, coupon);
+      }
+    } else {
+      alert("Cupom inválido!");
+      setAppliedCoupon(null);
+      if (currentUser) {
+        localStorage.removeItem(`coupon_${currentUser.id}`);
+      }
+    }
+  };
+
+  const subtotal = cart.reduce(
     (acc, item) => acc + item.preco * item.quantidade,
     0
   );
+
+  const total = appliedCoupon ? subtotal * (1 - DISCOUNT_PERCENTAGE) : subtotal;
 
   const produtosFiltrados = products.filter((produto) =>
     `${produto.nome} ${produto.descricao} ${produto.chave?.join(" ") || ""}`
@@ -159,7 +180,10 @@ const Home = () => {
         onClearCart={() => setCart([])}
         onIncrementItem={incrementItem}
         onDecrementItem={decrementItem}
-        total={total}
+        total={subtotal}
+        onApplyCoupon={handleApplyCoupon}
+        appliedCoupon={appliedCoupon}
+        discountedTotal={total}
       />
 
       <div className="flex flex-col items-center w-full min-h-screen p-6 gap-8 bg-slate-50 pt-24">
