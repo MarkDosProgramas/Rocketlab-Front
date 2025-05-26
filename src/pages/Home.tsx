@@ -11,7 +11,7 @@ import type { CartItem } from "../types/cartTypes";
 import { useAuth } from "../contexts/AuthContext";
 
 const VALID_COUPON = "ROCKETLABVDEV";
-const DISCOUNT_PERCENTAGE = 0.1; // 10% discount
+const DISCOUNT_PERCENTAGE = 0.1;
 
 const Home = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -34,23 +34,31 @@ const Home = () => {
       navigate("/login");
       return;
     }
+
     setCart((prevCart) => {
       const index = prevCart.findIndex((item) => item.id === product.id);
+      const newCart = [...prevCart];
+
       if (index !== -1) {
-        const newCart = [...prevCart];
-        newCart[index].quantidade += 1;
-        return newCart;
-      }
-      return [
-        ...prevCart,
-        {
+        newCart[index] = {
+          ...newCart[index],
+          quantidade: newCart[index].quantidade + 1,
+        };
+      } else {
+        newCart.push({
           id: product.id,
           nome: product.nome,
           imagem: product.imagem,
           preco: product.preco,
           quantidade: 1,
-        },
-      ];
+        });
+      }
+
+      if (currentUser) {
+        localStorage.setItem(`cart_${currentUser.id}`, JSON.stringify(newCart));
+      }
+
+      return newCart;
     });
 
     setIsSidebarOpen(true);

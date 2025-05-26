@@ -68,7 +68,15 @@ Uma loja virtual moderna e responsiva construída com React, TypeScript e Tailwi
    yarn dev
    ```
 
-4. **Acesse a aplicação**
+4. **Credenciais para teste**
+
+   ```
+   Username: visagio
+   Password: 123
+
+   ```
+
+5. **Acesse a aplicação**
    - Abra seu navegador e acesse `http://localhost:5173`
 
 ## 📁 Estrutura do Projeto

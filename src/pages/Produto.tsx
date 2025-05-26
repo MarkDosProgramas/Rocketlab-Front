@@ -7,8 +7,7 @@ import { ChevronLeft, ChevronRight, ShoppingCart, Star } from "lucide-react";
 import { useAuth } from "../contexts/AuthContext";
 
 const Produto = () => {
-  const { currentUser } = useAuth(); // necessário se o carrinho for por usuário
-
+  const { currentUser } = useAuth();
   const handleAddCart = (product: Product) => {
     if (!currentUser) {
       alert("Você precisa estar logado para adicionar itens ao carrinho.");
